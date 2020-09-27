@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] float padding = 1f;
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] GameObject projectilePrefab;
+    [SerializeField] float projectileFiringPeriod = 0.5f;
+
+    Coroutine firingCoroutine;
 
     float xMin;
     float xMax;
@@ -23,7 +26,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         SetUpMoveBoundaries();
     }
 
@@ -35,12 +37,25 @@ public class Player : MonoBehaviour
         
     }
 
+    IEnumerator FireContinously()
+    {
+        while (true)
+        {
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+            yield return new WaitForSeconds(projectileFiringPeriod);
+        }
+    }
+
     private void Fire()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
-            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+           firingCoroutine = StartCoroutine(FireContinously());
+        } 
+        if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(firingCoroutine);
         }
     }
 

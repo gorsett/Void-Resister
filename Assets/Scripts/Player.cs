@@ -8,8 +8,12 @@ public class Player : MonoBehaviour
 {
 
     //conf parameters
+    [Header("Player")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
+    [SerializeField] int health = 200;
+
+    [Header("Projectile")]
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileFiringPeriod = 0.5f;
@@ -35,6 +39,23 @@ public class Player : MonoBehaviour
         Move();
         Fire();
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D hit)
+    {
+        DamageDealer damageDealer = hit.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
+        ProcessHit(damageDealer);
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator FireContinously()

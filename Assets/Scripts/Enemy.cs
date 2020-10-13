@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,7 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject explosionPrefab;
     [SerializeField] float projectileSpeed = -10f;
+    float durationOfExplosion = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, durationOfExplosion);
         }
     }
 }

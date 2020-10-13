@@ -154,4 +154,6 @@ MonoBehaviour:
   maxTimeBetweenShots: 3
   projectilePrefab: {fileID: 9161800085286716841, guid: dda8397a1b671ea489d3cc32eee318bb,
     type: 3}
+  explosionPrefab: {fileID: 5305133261938219095, guid: b8cf2156f60394f469505144f6788990,
+    type: 3}
   projectileSpeed: -10

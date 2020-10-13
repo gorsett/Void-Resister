@@ -5,14 +5,25 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //conf parameters
+    [Header("Enemy")]
     [SerializeField] float health = 100;
+    [SerializeField] AudioClip deathSound;
+    [Range(0, 1)] [SerializeField] float deathSoundVolume = 1;
+    float durationOfExplosion = 0.5f;
+
+    [Header("Projectile")]
     [SerializeField] float shotCounter;
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] float projectileSpeed = -10f;
-    float durationOfExplosion = 0.5f;
+    [SerializeField] AudioClip fireSound;
+    [Range(0, 1)] [SerializeField] float fireSoundVolume = 1;
+
+
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +50,9 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
+        AudioSource.PlayClipAtPoint(fireSound, Camera.main.transform.position, fireSoundVolume);
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
-        
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);  
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -57,9 +68,15 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(explosion, durationOfExplosion);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+        Destroy(gameObject);
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(explosion, durationOfExplosion);
     }
 }

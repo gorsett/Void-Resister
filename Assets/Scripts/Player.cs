@@ -12,12 +12,15 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
     [SerializeField] int health = 200;
+    [SerializeField] AudioClip deathSound;
+    [Range(0, 1)] [SerializeField] float deathSoundVolume = 1;
 
     [Header("Projectile")]
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileFiringPeriod = 0.5f;
-
+    [SerializeField] AudioClip fireSound;
+    [Range(0, 1)] [SerializeField] float fireSoundVolume = 1;
     Coroutine firingCoroutine;
 
     float xMin;
@@ -54,14 +57,21 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+        Destroy(gameObject);
     }
 
     IEnumerator FireContinously()
     {
         while (true)
         {
+            AudioSource.PlayClipAtPoint(fireSound, Camera.main.transform.position, fireSoundVolume);
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
             yield return new WaitForSeconds(projectileFiringPeriod);

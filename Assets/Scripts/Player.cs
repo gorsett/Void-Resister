@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+
+    //cached references
+    Level level;
 
     //conf parameters
     [Header("Player")]
@@ -63,8 +67,10 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        FindObjectOfType<Level>().LoadGameOver();
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
         Destroy(gameObject);
+
     }
 
     IEnumerator FireContinously()

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9075680041183862648}
   - component: {fileID: 4636608458491890686}
   - component: {fileID: 4483073040821768827}
+  - component: {fileID: 3318351454791175743}
   m_Layer: 9
   m_Name: Enemy1
   m_TagString: Untagged
@@ -96,7 +97,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.9216263, y: -0.28944945}
@@ -136,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b5e0382f625374c96e77aeff49c793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 200
 --- !u!114 &4636608458491890686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  deathSound: {fileID: 8300000, guid: 4b361a8fc77495445a10e48f9451e620, type: 3}
+  deathSoundVolume: 1
   shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
@@ -158,8 +161,8 @@ MonoBehaviour:
   explosionPrefab: {fileID: 5305133261938219095, guid: b8cf2156f60394f469505144f6788990,
     type: 3}
   projectileSpeed: -10
-  deathSound: {fileID: 8300000, guid: 4b361a8fc77495445a10e48f9451e620, type: 3}
   fireSound: {fileID: 8300000, guid: e8fc6ca619265534ba9f94863a2c6c9c, type: 3}
+  fireSoundVolume: 1
 --- !u!82 &4483073040821768827
 AudioSource:
   m_ObjectHideFlags: 0
@@ -256,3 +259,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &3318351454791175743
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758358018091899819}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

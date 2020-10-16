@@ -153,6 +153,7 @@ MonoBehaviour:
   health: 100
   deathSound: {fileID: 8300000, guid: 4b361a8fc77495445a10e48f9451e620, type: 3}
   deathSoundVolume: 1
+  scoreAmount: 100
   shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3

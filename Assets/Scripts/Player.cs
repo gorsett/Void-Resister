@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     //cached references
     Level level;
+    GameSession gameSession;
 
     //conf parameters
     [Header("Player")]

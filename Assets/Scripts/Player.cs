@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [Header("Player")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
-    [SerializeField] int health = 200;
+    [SerializeField] int health = 500;
     [SerializeField] AudioClip deathSound;
     [Range(0, 1)] [SerializeField] float deathSoundVolume = 1;
 
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
-        
     }
 
     private void OnTriggerEnter2D(Collider2D hit)
@@ -64,6 +63,11 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 
     private void Die()

@@ -7,6 +7,7 @@ public class GameSession : MonoBehaviour
 
     [SerializeField] int score = 0;
 
+
     void Awake()
     {
         SetUpSingleton();
@@ -29,6 +30,11 @@ public class GameSession : MonoBehaviour
     {
         score += scoreValue;
     }
+
+    //public int GetHealth()
+    //{
+    //   return FindObjectOfType<Player>().GivetHealth();
+    //}
 
     public int GetScore()
     {

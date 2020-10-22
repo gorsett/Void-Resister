@@ -154,7 +154,6 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 4b361a8fc77495445a10e48f9451e620, type: 3}
   deathSoundVolume: 1
   scoreAmount: 100
-  shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
   projectilePrefab: {fileID: 9161800085286716841, guid: dda8397a1b671ea489d3cc32eee318bb,

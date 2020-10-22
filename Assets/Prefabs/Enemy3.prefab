@@ -153,9 +153,9 @@ MonoBehaviour:
   health: 1500
   deathSound: {fileID: 8300000, guid: 4b361a8fc77495445a10e48f9451e620, type: 3}
   deathSoundVolume: 1
-  scoreAmount: 1000
-  minTimeBetweenShots: 0.2
-  maxTimeBetweenShots: 3
+  scoreAmount: 1500
+  minTimeBetweenShots: 0.1
+  maxTimeBetweenShots: 2
   projectilePrefab: {fileID: 9161800085286716841, guid: b0a26c9ac2c918249bbedc94b9db55e8,
     type: 3}
   explosionPrefab: {fileID: 5305133261938219095, guid: b8cf2156f60394f469505144f6788990,
